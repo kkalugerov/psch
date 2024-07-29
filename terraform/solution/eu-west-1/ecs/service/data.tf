@@ -48,4 +48,12 @@ data "terraform_remote_state" "iam" {
   }
 }
 
-data "aws_caller_identity" "current" {}
+data "terraform_remote_state" "ecr" {
+  backend = "s3"
+
+  config = {
+    bucket = "kkalugeroff-eu-west-1-terraform-state-bucket"
+    key    = "solution/eu-west-1/ecr/app/terraform.tfstate"
+    region = "eu-west-1"
+  }
+}

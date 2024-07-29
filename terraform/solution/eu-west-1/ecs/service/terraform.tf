@@ -9,8 +9,7 @@ module "service" {
   target_group_protocol = "HTTP"
 
   service_name                    = "python-web-app"
-  account_id                      = data.aws_caller_identity.current.account_id
-  image_name                      = "kalugeroff-python-web-app"
+  repository_url                  = data.terraform_remote_state.ecr.outputs.repository_url
   cluster_id                      = data.terraform_remote_state.cluster.outputs.cluster_id
   ecs_task_desired_count          = 2
   container_port                  = 8080

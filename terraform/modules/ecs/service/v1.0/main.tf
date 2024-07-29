@@ -70,7 +70,7 @@ resource "aws_ecs_task_definition" "this" {
   container_definitions = jsonencode([
     {
       name        = format("%s-%s", var.prefix, var.service_name)
-      image       = format("%s.dkr.ecr.%s.amazonaws.com/%s:%s", var.account_id, var.region, var.image_name, var.image_tag)
+      image       = format("%s:%s", var.repository_url, var.image_tag)
       cpu         = 0
       essential   = true
       environment = var.cd_environmental_variables

@@ -220,16 +220,9 @@ variable "td_memory" {
   default     = 1024
 }
 
-variable "account_id" {
-  description = "AWS account in use"
+variable "repository_url" {
+  description = "Image repository url"
   type        = string
-  default     = ""
-}
-
-variable "image_name" {
-  description = "ECR image name"
-  type        = string
-  default     = ""
 }
 
 variable "image_tag" {
