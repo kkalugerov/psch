@@ -1,8 +1,7 @@
-**/.env
-**/.venv
 **/.terraform
 .terraform
 *.tfstate
+*.tfstate.*.*
 *.tfstate.backup
 *.terraform.*
 .envrc
