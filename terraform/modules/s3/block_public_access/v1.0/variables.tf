@@ -1,9 +1,3 @@
-variable "region" {
-  description = "AWS regio in use"
-  type        = string
-  default     = "eu-west-1"
-}
-
 variable "enable" {
   description = "Flag used to set or not public access blockage"
   type        = bool

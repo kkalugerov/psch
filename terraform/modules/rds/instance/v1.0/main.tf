@@ -113,8 +113,6 @@ resource "aws_db_instance" "this" {
     }
   }
 
-  tags = merge(var.tags, var.db_instance_tags)
-
   depends_on = [aws_cloudwatch_log_group.this]
 
   timeouts {
@@ -140,8 +138,6 @@ resource "aws_cloudwatch_log_group" "this" {
   kms_key_id        = var.cloudwatch_log_group_kms_key_id
   skip_destroy      = var.cloudwatch_log_group_skip_destroy
   log_group_class   = var.cloudwatch_log_group_class
-
-  tags = var.tags
 }
 
 ################################################################################

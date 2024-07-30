@@ -1,3 +1,14 @@
+provider "aws" {
+  region = "eu-west-1"
+  default_tags {
+    tags = {
+      "Deployment" = "Terraform"
+      "Owner"      = "Kristiyan Kalugerov"
+      "DeleteMe"   = "No"
+    }
+  }
+}
+
 module "db_sg" {
   source      = "../../../../modules/security_groups/v1.0"
   description = "DB Security Group"

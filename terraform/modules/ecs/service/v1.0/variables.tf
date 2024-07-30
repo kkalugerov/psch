@@ -258,13 +258,3 @@ variable "cd_protocol" {
   type        = string
   default     = "tcp"
 }
-
-variable "tags" {
-  description = "Default resource tags"
-  type        = map(string)
-  default = {
-    "Deployment" = "Terraform"
-    "Owner"      = "Kristiyan Kalugerov"
-    "DeleteMe"   = "No"
-  }
-}

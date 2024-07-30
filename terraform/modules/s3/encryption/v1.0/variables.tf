@@ -1,7 +1,7 @@
 variable "region" {
   description = "AWS regio in use"
   type        = string
-  default     = "eu-west-1"
+  default     = null
 }
 
 variable "prefix" {

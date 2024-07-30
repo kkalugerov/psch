@@ -13,7 +13,7 @@ resource "aws_ecr_repository" "repository" {
     kms_key         = var.encryption_type == "KMS" ? var.kms_key_arn : null
   }
 
-  tags = merge({
+  tags = {
     "Name" = format("%s-%s", var.identifier, var.name)
-  }, var.tags)
+  }
 }

@@ -3,11 +3,9 @@ resource "aws_security_group" "this" {
   vpc_id      = var.vpc_id
   description = var.description
 
-  tags = merge(
-    {
-      "Name" = format("%s-%s-%s-%s", var.prefix, var.region, var.usage, "sg")
-    }
-  )
+  tags = {
+    "Name" = format("%s-%s-%s-%s", var.prefix, var.region, var.usage, "sg")
+  }
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ingress_rules" {

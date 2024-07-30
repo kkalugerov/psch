@@ -34,13 +34,3 @@ variable "egress_rules" {
   description = "List of ingress security group rules"
   type        = map(any)
 }
-
-variable "tags" {
-  description = "Default resource tags"
-  type        = map(string)
-  default = {
-    "Deployment" = "Terraform"
-    "Owner"      = "Kristiyan Kalugerov"
-    "DeleteMe"   = "No"
-  }
-}

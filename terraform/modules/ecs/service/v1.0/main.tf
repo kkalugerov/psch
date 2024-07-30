@@ -15,8 +15,6 @@ resource "aws_alb_target_group" "this" {
     protocol            = var.health_check_protocol
     matcher             = var.health_check_matcher
   }
-
-  tags = var.tags
 }
 
 resource "aws_alb_listener" "this" {
@@ -101,5 +99,4 @@ resource "aws_ecs_task_definition" "this" {
 resource "aws_cloudwatch_log_group" "this" {
   name              = format("/aws/ecs/%s", var.service_name)
   retention_in_days = 90
-  tags              = merge(var.tags)
 }

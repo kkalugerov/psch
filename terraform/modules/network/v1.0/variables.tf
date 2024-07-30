@@ -51,13 +51,3 @@ variable "db_1b_cidr" {
   type        = string
   default     = "10.0.6.0/24"
 }
-
-variable "tags" {
-  description = "Default resource tags"
-  type        = map(string)
-  default = {
-    "Deployment" = "Terraform"
-    "Owner"      = "Kristiyan Kalugerov"
-    "DeleteMe"   = "No"
-  }
-}

@@ -78,7 +78,6 @@ resource "aws_ecs_cluster" "this" {
     }
   }
 
-  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_group" "this" {
@@ -87,8 +86,6 @@ resource "aws_cloudwatch_log_group" "this" {
   name              = try(coalesce(var.cloudwatch_log_group_name, "/aws/ecs/${var.cluster_name}"), "")
   retention_in_days = var.cloudwatch_log_group_retention_in_days
   kms_key_id        = var.cloudwatch_log_group_kms_key_id
-
-  tags = merge(var.tags, var.cloudwatch_log_group_tags)
 }
 
 ################################################################################
@@ -147,6 +144,4 @@ resource "aws_ecs_capacity_provider" "this" {
       }
     }
   }
-
-  tags = merge(var.tags, try(each.value.tags, {}))
 }

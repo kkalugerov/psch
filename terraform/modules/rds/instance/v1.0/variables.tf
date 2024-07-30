@@ -324,12 +324,6 @@ variable "backup_window" {
   default     = null
 }
 
-variable "db_instance_tags" {
-  description = "A map of additional tags for the DB instance"
-  type        = map(string)
-  default     = {}
-}
-
 variable "option_group_name" {
   description = "Name of the DB option group to associate."
   type        = string
@@ -499,14 +493,4 @@ variable "master_user_password_rotation_schedule_expression" {
   description = "A cron() or rate() expression that defines the schedule for rotating your secret. Either automatically_after_days or schedule_expression must be specified."
   type        = string
   default     = null
-}
-
-variable "tags" {
-  description = "Default resource tags"
-  type        = map(string)
-  default = {
-    "Deployment" = "Terraform"
-    "Owner"      = "Kristiyan Kalugerov"
-    "DeleteMe"   = "No"
-  }
 }

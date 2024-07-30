@@ -1,3 +1,14 @@
+provider "aws" {
+  region = "eu-west-1"
+  default_tags {
+    tags = {
+      "Deployment" = "Terraform"
+      "Owner"      = "Kristiyan Kalugerov"
+      "DeleteMe"   = "No"
+    }
+  }
+}
+
 module "web_app_logging_bucket" {
   source = "../../../../../modules/s3/bucket/v1.0"
 

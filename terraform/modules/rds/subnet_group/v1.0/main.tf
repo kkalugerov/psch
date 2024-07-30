@@ -3,10 +3,7 @@ resource "aws_db_subnet_group" "this" {
   description = var.description
   subnet_ids  = var.subnet_ids
 
-  tags = merge(
-    var.tags,
-    {
-      "Name" = var.name
-    },
-  )
+  tags = {
+    "Name" = var.name
+  }
 }

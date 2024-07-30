@@ -31,9 +31,9 @@ resource "aws_lb" "this" {
     }
   }
 
-  tags = merge({
+  tags = {
     "Name" = format("%s-%s-%s", var.prefix, var.region, var.name)
-  }, var.tags)
+  }
 
   timeouts {
     create = var.load_balancer_create_timeout

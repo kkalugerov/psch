@@ -1,9 +1,3 @@
-variable "region" {
-  description = "AWS regio in use"
-  type        = string
-  default     = "eu-west-1"
-}
-
 variable "prefix" {
   description = "Used as resources ownership marker"
   type        = string
@@ -69,12 +63,6 @@ variable "cloudwatch_log_group_kms_key_id" {
   default     = null
 }
 
-variable "cloudwatch_log_group_tags" {
-  description = "A map of additional tags to add to the log group created"
-  type        = map(string)
-  default     = {}
-}
-
 variable "default_capacity_provider_use_fargate" {
   description = "Determines whether to use Fargate or autoscaling for default capacity provider strategy"
   type        = bool
@@ -91,14 +79,4 @@ variable "autoscaling_capacity_providers" {
   description = "Map of autoscaling capacity provider definitions to create for the cluster"
   type        = any
   default     = {}
-}
-
-variable "tags" {
-  description = "Default resource tags"
-  type        = map(string)
-  default = {
-    "Deployment" = "Terraform"
-    "Owner"      = "Kristiyan Kalugerov"
-    "DeleteMe"   = "No"
-  }
 }

@@ -1,3 +1,14 @@
+provider "aws" {
+  region = "eu-west-1"
+  default_tags {
+    tags = {
+      "Deployment" = "Terraform"
+      "Owner"      = "Kristiyan Kalugerov"
+      "DeleteMe"   = "No"
+    }
+  }
+}
+
 module "static_web_bucket" {
   source = "../../../../../modules/s3/bucket/v1.0"
 

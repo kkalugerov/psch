@@ -1,7 +1,17 @@
+provider "aws" {
+  default_tags {
+    tags = {
+      "Deployment" = "Terraform"
+      "Owner"      = "Kristiyan Kalugerov"
+      "DeleteMe"   = "No"
+    }
+  }
+}
+
 module "cloudfront_distribution" {
   source = "../../../../../modules/cloudfront/distribution/v1.0"
 
-  origin_id              = "kkalugeroff" #data.terraform_remote_state.static_web_origin.outputs.static_web_bucket
+  origin_id              = "kkalugeroff"
   domain_name            = data.terraform_remote_state.elb.outputs.lb_dns_name
   origin_protocol_policy = "http-only"
   origin_ssl_protocols   = ["TLSv1"]

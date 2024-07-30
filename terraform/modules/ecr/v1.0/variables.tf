@@ -1,9 +1,3 @@
-variable "region" {
-  description = "AWS region in use"
-  type        = string
-  default     = "eu-west-1"
-}
-
 variable "identifier" {
   description = "The name of the RDS instance"
   type        = string
@@ -42,14 +36,4 @@ variable "kms_key_arn" {
   description = "KMS key ARN used if encryption type is KMS"
   type        = string
   default     = null
-}
-
-variable "tags" {
-  description = "Default resource tags"
-  type        = map(string)
-  default = {
-    "Deployment" = "Terraform"
-    "Owner"      = "Kristiyan Kalugerov"
-    "DeleteMe"   = "No"
-  }
 }

@@ -1,3 +1,13 @@
+provider "aws" {
+  default_tags {
+    tags = {
+      "Deployment" = "Terraform"
+      "Owner"      = "Kristiyan Kalugerov"
+      "DeleteMe"   = "No"
+    }
+  }
+}
+
 module "cloudfront_distribution" {
   source = "../../../../../modules/cloudfront/distribution/v1.0"
 

@@ -28,7 +28,6 @@ variable "policy" {
   default     = ""
 }
 
-
 variable "tags" {
   description = "Default resource tags"
   type        = map(string)

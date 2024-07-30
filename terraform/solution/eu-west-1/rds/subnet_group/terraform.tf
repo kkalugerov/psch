@@ -1,3 +1,14 @@
+provider "aws" {
+  region = "eu-west-1"
+  default_tags {
+    tags = {
+      "Deployment" = "Terraform"
+      "Owner"      = "Kristiyan Kalugerov"
+      "DeleteMe"   = "No"
+    }
+  }
+}
+
 module "subnet_group" {
   source = "../../../../modules/rds/subnet_group/v1.0"
 
