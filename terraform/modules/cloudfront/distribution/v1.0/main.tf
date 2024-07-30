@@ -8,8 +8,8 @@ resource "aws_cloudfront_distribution" "this" {
     custom_origin_config {
       http_port              = 80
       https_port             = 443
-      origin_protocol_policy = "http-only"
-      origin_ssl_protocols   = ["TLSv1.2"]
+      origin_protocol_policy = var.origin_protocol_policy
+      origin_ssl_protocols   = var.origin_ssl_protocols
     }
   }
 
@@ -20,17 +20,17 @@ resource "aws_cloudfront_distribution" "this" {
     cached_methods   = var.cached_methods
 
     forwarded_values {
-      query_string = true
+      query_string = false
 
       cookies {
-        forward = "all"
+        forward = "none"
       }
     }
 
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = var.viewer_protocol_policy
     min_ttl                = 0
-    default_ttl            = 0
-    max_ttl                = 0
+    default_ttl            = 360
+    max_ttl                = 720
   }
 
   restrictions {
@@ -41,6 +41,15 @@ resource "aws_cloudfront_distribution" "this" {
 
   viewer_certificate {
     cloudfront_default_certificate = true
+  }
+
+  dynamic "logging_config" {
+    for_each = length(var.logging_config) > 0 ? [var.logging_config] : []
+    content {
+      include_cookies = lookup(logging_config.value, "include_cookies", null)
+      bucket          = format("%s.%s", lookup(logging_config.value, "bucket", null), "s3.amazonaws.com")
+      prefix          = lookup(logging_config.value, "prefix", null)
+    }
   }
 
   price_class = "PriceClass_200"
