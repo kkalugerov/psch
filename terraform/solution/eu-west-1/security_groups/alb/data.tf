@@ -7,3 +7,7 @@ data "terraform_remote_state" "vpc" {
     region = "eu-west-1"
   }
 }
+
+data "aws_ec2_managed_prefix_list" "cloudfront" {
+ name = "com.amazonaws.global.cloudfront.origin-facing"
+}

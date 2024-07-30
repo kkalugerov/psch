@@ -20,7 +20,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_rules" {
   cidr_ipv4                    = lookup(each.value, "cidr_ipv4", null)
   cidr_ipv6                    = lookup(each.value, "cidr_ipv6", null)
   referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null)
-  prefix_list_id               = lookup(each.value, "prefix_list_ids", null)
+  prefix_list_id               = lookup(each.value, "prefix_list_id", null)
   description                  = lookup(each.value, "description", null)
 
   security_group_id = aws_security_group.this.id
@@ -36,7 +36,7 @@ resource "aws_vpc_security_group_egress_rule" "egress_rules" {
   cidr_ipv4                    = lookup(each.value, "cidr_ipv4", null)
   cidr_ipv6                    = lookup(each.value, "cidr_ipv6", null)
   referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null)
-  prefix_list_id               = lookup(each.value, "prefix_list_ids", null)
+  prefix_list_id               = lookup(each.value, "prefix_list_id", null)
   description                  = lookup(each.value, "description", null)
 
   security_group_id = aws_security_group.this.id

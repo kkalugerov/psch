@@ -5,11 +5,11 @@ module "alb_sg" {
   usage       = "public-alb"
   ingress_rules = {
     "rule0" = {
-      from_port   = 80
-      to_port     = 80
-      ip_protocol = "tcp"
-      cidr_ipv4   = "213.91.248.149/32"
-      description = "Allow HTTP access from home network"
+      from_port       = 80
+      to_port         = 80
+      ip_protocol     = "tcp"
+      prefix_list_id = data.aws_ec2_managed_prefix_list.cloudfront.id
+      description     = "HTTPS from CloudFront"
     }
   }
   egress_rules = {
