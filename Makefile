@@ -233,6 +233,9 @@ sa_cf_dist_destroy:
 	echo "Destroying Static Assets CloudFront Distribution"
 	terraform -chdir=./terraform/solution/eu-west-1/cloudfront/static_assets/distribution destroy -auto-approve
 
+cf_destroy: sa_cf_dist_destroy sa_cf_origin_distroy sa_cf_dist_log_destroy app_cf_dist_destroy app_cf_dist_log_destroy
+ecs_destroy: ecs_service_destroy ecs_cluster_destroy
+sg_destroy: db_sg_destroy ecs_sg_destroy alb_sg_destroy
 
-destroy_all: sa_cf_dist_destroy sa_cf_origin_distroy sa_cf_dist_log_destroy app_cf_dist_destroy app_cf_dist_log_destroy ecs_service_destroy ecs_cluster_destroy elb_destroy iam_destroy db_sg_destroy ecs_sg_destroy alb_sg_destroy vpc_destroy
 
+destroy_all: cf_destroy ecs_destroy elb_destroy iam_destroy sg_destroy vpc_destroy
