@@ -38,7 +38,7 @@
 
 ### Security Groups
 - ECS Security Group:
-    - allowing traffic on port 80 from Application Load Balancer SG
+    - allowing traffic on port 8080 from Application Load Balancer SG
 - ALB Security Group:
     - allow traffic on port 80 from CloudFront prefix list
 - RDS Security Group:
