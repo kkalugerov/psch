@@ -13,14 +13,14 @@ module "alb_sg" {
   source      = "../../../../modules/security_groups/v1.0"
   description = "Public ALB Security Group"
   vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
-  usage       = "public-alb"
+  usage       = "alb"
   ingress_rules = {
     "rule0" = {
       from_port       = 80
       to_port         = 80
       ip_protocol     = "tcp"
       prefix_list_id = data.aws_ec2_managed_prefix_list.cloudfront.id
-      description     = "HTTPS from CloudFront"
+      description     = "HTTP from CloudFront"
     }
   }
   egress_rules = {

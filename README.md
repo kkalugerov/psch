@@ -21,19 +21,20 @@
 - 1 VPC
     - 10.0.0.0/16 
 - 2 Public Subnets(used by Application Load Balancer):
-    - 10.0.1.0/24 
-    - 10.0.2.0/24
+    - 10.0.0.0/20 
+    - 10.0.16.0/20
 - 2 Private Subnets(used by ECS Fargate Service)
-    - 10.0.3.0/24 
-    - 10.0.4.0/24
+    - 10.0.32.0/20
+    - 10.0.48.0/20
 - 2 Private Database Subnets(used by RDS instance):
-    - 10.0.5.0/24
-    - 10.0.6.0/24 
+    - 10.0.64.0/20
+    - 10.0.80.0/20
 - 1 Public Route Table associated with 2 Public Subnets
 - 2 Private Route Tables associated with 2 Private Subnets
 - 1 Database Route Table associated with 2 Private Database Subnets
 - 1 Internet Gateway
 - 1 NAT Gateway
+- Each Subnet has 4096 IPs available to the application can scale a bit in case of need
 
 ### Security Groups
 - ECS Security Group:
@@ -44,8 +45,9 @@
     - allowing all traffic from ASG SG
 
 ### Compute
-- ECS Cluster
-- ECS Service using Fargate - running simple web application(Hello World)
+- ECS Cluster and a CloudWatch log group
+- ECS Service using Fargate - running simple web application(Hello World) and a CloudWatch log group
+  <br>Note: Fargate was used in order to reduce the complexity around managing EC2s and whatever components they have in relation</br>
 - Application Load Balancer with Listener on port 80 - serving content from ECS service
   Note: Due to missing SSL/TLS Certificate there isn't listener on port 443 configured. This is the reason behind missing SSL offloading.
 
@@ -166,4 +168,24 @@ Later on we can run `terraform plan -generate-config-out=terraform.tf` which wil
         |    | -- ecs
 ```
 
-## Setup
+## Prerequisites for creation
+- AWS permissions exported as AWS_DEFAULT_REGION AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY environmental variables
+
+## Order of resource creation
+
+1. VPC
+2. Security Groups
+3. IAM Permissions
+4. Application Load Balancer
+5. Database
+6. ECS Cluster
+7. ECS Service
+8. S3 bucket hosting Static Assets
+8. S3 bucket used as logging storage for Static Assets CloudFront Distribution
+9. Static Assets CloudFront Distribution
+10. S3 bucket used as logging storage for Web App CloudFront Distribution
+11. Web App CloudFront Distribution
+
+<br> Note: make create_all can be used to create all the infrastructure components.
+     A couple of existing are excluded like RDS(currently there isn't application communication established with it) and ECR(an image needs to exists in advance).
+</br>
